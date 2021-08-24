@@ -25,8 +25,18 @@ WHERE "products"."id" = 6;
 
 -- 5. Get the number of orders for each customer. 
 -- NOTE: It is OK if those without orders are not included in results.
+SELECT
+	count("customers"."id") AS "totalOrders",
+	"customers"."first_name",
+	"customers"."last_name"
+FROM "orders"
+JOIN "addresses" ON "orders"."address_id" = "addresses"."id"
+JOIN "customers" ON "addresses"."id" = "customers"."id"
+GROUP BY "customers"."id"
+ORDER BY "totalOrders" DESC;
 
 -- 6. How many customers do we have?
+SELECT count(*) FROM "customers";
 
 -- 7. How many products do we carry?
 
