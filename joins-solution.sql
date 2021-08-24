@@ -60,6 +60,16 @@ JOIN "orders" ON "orders"."id" = "line_items"."order_id"
 GROUP BY "orders"."id";
 
 -- 10. How much has each customer spent in total?
+SELECT 
+	sum("products"."unit_price") as "totaCustomerCost",
+	"customers"."first_name",
+	"customers"."last_name"
+FROM "products"
+JOIN "line_items" ON "line_items"."product_id" = "products"."id"
+JOIN "orders" ON "orders"."id" = "line_items"."order_id"
+JOIN "addresses" ON "orders"."address_id" = "addresses"."id"
+JOIN "customers" ON "addresses"."customer_id" = "customers"."id"
+GROUP BY "customers"."id";
 
 -- 11. How much has each customer spent in total? 
 -- Customers who have spent $0 should still show up in the table. 
