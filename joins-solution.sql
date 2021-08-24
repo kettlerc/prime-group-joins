@@ -12,8 +12,16 @@ JOIN "orders" ON "orders"."id" = "line_items"."order_id"
 JOIN "products" ON "products"."id" = "line_items"."product_id";
 
 -- 3. Which warehouses have cheetos?
+SELECT * FROM "warehouse_product"
+JOIN "warehouse" ON "warehouse_product"."warehouse_id" = "warehouse"."id"
+JOIN "products" ON "warehouse_product"."product_id" = "products"."id"
+WHERE "products"."id" = 5;
 
 -- 4. Which warehouses have diet pepsi?
+SELECT * FROM "warehouse_product"
+JOIN "warehouse" ON "warehouse_product"."warehouse_id" = "warehouse"."id"
+JOIN "products" ON "warehouse_product"."product_id" = "products"."id"
+WHERE "products"."id" = 6;
 
 -- 5. Get the number of orders for each customer. 
 -- NOTE: It is OK if those without orders are not included in results.
