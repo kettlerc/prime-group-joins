@@ -52,6 +52,12 @@ GROUP BY "products"."id";
 
 --STRETCH
 -- 9. How much was the total cost for each order?
+SELECT 
+	sum("products"."unit_price") as "totaOrderCost"
+FROM "products"
+JOIN "line_items" ON "line_items"."product_id" = "products"."id"
+JOIN "orders" ON "orders"."id" = "line_items"."order_id"
+GROUP BY "orders"."id";
 
 -- 10. How much has each customer spent in total?
 
